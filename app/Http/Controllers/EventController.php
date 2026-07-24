@@ -49,11 +49,28 @@ class EventController extends Controller
         $event->delete();
         return to_route("dachbordAdmin");
     }
-    public function UpdateEvent(){
-
+    public function UpdateEvent(Request $request,$id){
+        $request->validate([
+            "title"=>"required",
+            "place"=>"required",
+            "date"=>"required",
+            "heure"=>"required",
+            "price"=>"required",
+            "description"=>"required",
+        ]);
+        $event=Event::findOrFail($id);
+        $event->update([
+            "title"=>$request->title,
+            "place"=>$request->place,
+            "date"=>$request->date,
+            "heure"=>$request->heure,
+            "price"=>$request->price,
+            "description"=>$request->description,
+        ]);
+        return to_route("dachbordAdmin");
     }
     public function UpdateEventDisplay($id){
-       $event=Event::where("id",$id)->get();
+       $event=Event::where("id",$id)->first();
        return view("admin.EventForm",["event"=>$event]);
     }
 }

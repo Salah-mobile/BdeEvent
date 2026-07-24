@@ -19,7 +19,7 @@
             </a>
         </div>
         <div class="bg-white rounded-3xl shadow-sm border border-slate-200/80 p-6 sm:p-8">
-            <form action="{{ isset($event) ? route('events.update', $event->id) : route('createEvent') }}" method="POST" class="space-y-6">
+            <form action="{{ isset($event) ? route('updateE', $event->id) : route('createEvent') }}" method="POST" class="space-y-6">
                 @csrf
                 @if(isset($event))
                     @method('PUT')
@@ -57,12 +57,14 @@
                             class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-sm transition-all outline-none">
                         @error('price') <span class="text-xs text-red-500 mt-1 block">{{ $message }}</span> @enderror
                     </div>
+                    @if (!isset($event))
                     <div>
                         <label for="places_limite" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Places Limitées</label>
                         <input type="number" name="places_limite" id="places_limite" value="{{ old('places_limite', $event->places_limite ?? '') }}" placeholder="ex: 100" required
                             class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-sm transition-all outline-none">
                         @error('places_limite') <span class="text-xs text-red-500 mt-1 block">{{ $message }}</span> @enderror
                     </div>
+                    @endif
                 </div>
                 <div>
                     <label for="description" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Description</label>

@@ -85,7 +85,7 @@
                                 </td>
                                 <td class="px-6 py-4 text-right">
                                     <div class="flex items-center justify-end gap-2">
-                                        <a href="" class="p-2 text-slate-500 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-all">
+                                        <a href="{{ route("updateES",$event->id) }}" class="p-2 text-slate-500 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-all">
                                             update
                                         </a>
                                         <form method="POST" action="{{ route("deleteE",$event->id) }}" class="inline" >
