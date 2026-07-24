@@ -1,4 +1,5 @@
 @extends("layouts.app")
+
 @section("content")
 <div class="min-h-screen bg-slate-50/50 py-8">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -18,7 +19,7 @@
             </a>
         </div>
         <div class="bg-white rounded-3xl shadow-sm border border-slate-200/80 p-6 sm:p-8">
-            <form action="{{ isset($event) ? route('events.update', $event->id) : route('events.store') }}" method="POST" class="space-y-6">
+            <form action="{{ isset($event) ? route('events.update', $event->id) : route('createEvent') }}" method="POST" class="space-y-6">
                 @csrf
                 @if(isset($event))
                     @method('PUT')
@@ -42,7 +43,6 @@
                             class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-sm transition-all outline-none">
                         @error('date') <span class="text-xs text-red-500 mt-1 block">{{ $message }}</span> @enderror
                     </div>
-
                     <div>
                         <label for="heure" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Heure</label>
                         <input type="time" name="heure" id="heure" value="{{ old('heure', $event->heure ?? '') }}" required
@@ -50,8 +50,6 @@
                         @error('heure') <span class="text-xs text-red-500 mt-1 block">{{ $message }}</span> @enderror
                     </div>
                 </div>
-
-                <!-- Prix & Places Limitées (Row) -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>
                         <label for="price" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Prix (DH)</label>
@@ -59,7 +57,6 @@
                             class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-sm transition-all outline-none">
                         @error('price') <span class="text-xs text-red-500 mt-1 block">{{ $message }}</span> @enderror
                     </div>
-
                     <div>
                         <label for="places_limite" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Places Limitées</label>
                         <input type="number" name="places_limite" id="places_limite" value="{{ old('places_limite', $event->places_limite ?? '') }}" placeholder="ex: 100" required
@@ -67,16 +64,12 @@
                         @error('places_limite') <span class="text-xs text-red-500 mt-1 block">{{ $message }}</span> @enderror
                     </div>
                 </div>
-
-                <!-- Description -->
                 <div>
                     <label for="description" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Description</label>
                     <textarea name="description" id="description" rows="4" placeholder="Description de l'événement..." required
                         class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-sm transition-all outline-none resize-none">{{ old('description', $event->description ?? '') }}</textarea>
                     @error('description') <span class="text-xs text-red-500 mt-1 block">{{ $message }}</span> @enderror
                 </div>
-
-                <!-- Submit Button -->
                 <div class="pt-4 flex justify-end gap-3">
                     <a href="{{ url()->previous() }}" class="px-6 py-3 rounded-xl border border-slate-200 text-slate-600 font-semibold text-xs hover:bg-slate-50 transition-all">
                         Annuler

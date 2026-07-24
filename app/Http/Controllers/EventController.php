@@ -18,11 +18,32 @@ class EventController extends Controller
        return view("student.ReservationPage",["reservations"=>$reservation]);
     }
     public function CreateEvent(Request $request){
+        $request->validate([
+            "title"=>"required",
+            "place"=>"required",
+            "date"=>"required",
+            "heure"=>"required",
+            "price"=>"required",
+            "places_limite"=>"required",
+            "description"=>"required",
+        ]);
+        Event::create([
+            "title"=>$request->title,
+            "place"=>$request->place,
+            "date"=>$request->date,
+            "heure"=>$request->heure,
+            "price"=>$request->price,
+            "places_limite"=>$request->places_limite,
+            "description"=>$request->description,
+            "created_by"=>auth()->user()->id,
+        ]);
+        return to_route("dachbordAdmin");
 
     }
     public function CreateEventPage(){
-        return view()
+        return view("admin.EventForm");
     }
+
     public function deleteEvent($id){
         $event=Event::findOrFail($id);
         $event->delete();
@@ -30,5 +51,9 @@ class EventController extends Controller
     }
     public function UpdateEvent(){
 
+    }
+    public function UpdateEventDisplay($id){
+       $event=Event::where("id",$id)->get();
+       return view("admin.EventForm",["event"=>$event]);
     }
 }

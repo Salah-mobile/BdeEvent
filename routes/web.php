@@ -15,6 +15,8 @@ Route::controller(EventController::class)->group(function (){
     Route::get("/DisplayEvents","DisplayEvent")->name("displayEvent");
     Route::get("/myEvents/{id}","DisplayEventByUser")->name("myEvent");
     Route::delete("/deleteEvent/{id}","deleteEvent")->name('deleteE');
+    Route::get("/createEvent","CreateEventPage")->name("displayForm");
+    Route::post("/createEvent","CreateEvent")->name("createEvent");
 });
 Route::controller(ReservationController::class)->group(function(){
     Route::post("/Reservation","ReservePlace")->name('reserve');

@@ -13,7 +13,8 @@ class Event extends Model
         'heure',
         'place',
         'price',
-        'places'
+        'places_limite',
+        'created_by'
     ];
     public function user(){
         return $this->belongsTo(User::class);
