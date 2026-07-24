@@ -24,7 +24,7 @@ class LoginController extends Controller
                 $user = Auth::user();
 
                 if($user->role->label == "admin"){
-                    return view("admin.dachbordA");
+                    return to_route("dachbordAdmin");
                 }
 
                 if($user->role->label == "student"){
@@ -36,6 +36,13 @@ class LoginController extends Controller
                     "email"=>"email or password is incorrect"
                 ]);
             }
+    }
+   public function logout()
+    {
+        Auth::logout();
+        request()->session()->invalidate();
+        request()->session()->regenerateToken();
+        return redirect()->route('loginPageS');
     }
 
 }

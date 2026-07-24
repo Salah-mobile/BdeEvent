@@ -27,7 +27,7 @@
                     </svg>
                     <span>Mes Événements</span>
                 </a>
-                <form method="POST" action="" class="inline">
+                <form method="POST" action="{{ route("logout") }}" class="inline">
                     @csrf
                     <button type="submit" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-red-500/20 text-slate-300 hover:text-red-400 border border-slate-700 hover:border-red-500/40 text-xs font-semibold transition-all">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

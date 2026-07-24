@@ -13,15 +13,20 @@ class EventController extends Controller
       $events=Event::with("user")->get();
       return view("student.homePage",["events"=>$events]);
     }
-     public function DisplayEventByUser(Request $request,$id){
+     public function DisplayEventByUser($id){
        $reservation=Reservation::with('event')->where("user_id",$id)->get();
        return view("student.ReservationPage",["reservations"=>$reservation]);
     }
     public function CreateEvent(Request $request){
 
     }
-    public function deleteEvent(){
-
+    public function CreateEventPage(){
+        return view()
+    }
+    public function deleteEvent($id){
+        $event=Event::findOrFail($id);
+        $event->delete();
+        return to_route("dachbordAdmin");
     }
     public function UpdateEvent(){
 
