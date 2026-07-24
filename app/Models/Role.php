@@ -4,9 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Admin extends User
+class Role extends Model
 {
-    public function events(){
+    protected $fillable = [
+        "label"
+    ];
+    public function users(){
         return $this->hasMany(User::class);
     }
 }
