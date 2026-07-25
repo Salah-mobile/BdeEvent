@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Event;
 use App\Models\Reservation;
+use App\Models\Ticket;
 use Illuminate\Http\Request;
 
 class EventController extends Controller
@@ -13,9 +14,11 @@ class EventController extends Controller
       $events=Event::with("user")->get();
       return view("student.homePage",["events"=>$events]);
     }
-     public function DisplayEventByUser($id){
-       $reservation=Reservation::with('event')->where("user_id",$id)->get();
-       return view("student.ReservationPage",["reservations"=>$reservation]);
+     public function DisplayTicketByUser($id){
+      $Tickets = Ticket::whereHas('reservation', function ($q) use($id) {
+            $q->where('user_id', $id);
+        })->get();
+       return view("student.TicketPage",["tickets"=>$Tickets]);
     }
     public function CreateEvent(Request $request){
         $request->validate([
@@ -38,7 +41,6 @@ class EventController extends Controller
             "created_by"=>auth()->user()->id,
         ]);
         return to_route("dachbordAdmin");
-
     }
     public function CreateEventPage(){
         return view("admin.EventForm");

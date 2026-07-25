@@ -67,9 +67,5 @@
                 </button>
             </form>
         </div>
-        <div class="px-6 py-3 bg-gray-50 border-t border-gray-100 flex justify-between items-center text-xs text-gray-500">
-            <span>Par <strong class="text-gray-700">{{ $created_by }}</strong></span>
-            <span>{{ $created_at }}</span>
-        </div>
     </div>
 </div>

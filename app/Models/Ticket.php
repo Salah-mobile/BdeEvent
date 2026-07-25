@@ -8,9 +8,9 @@ class Ticket extends Model
 {
     protected $fillable = [
         'ticket_code',
-        'code_qr'
+        "reservation_id",
     ];
-    public function reservations(){
+    public function reservation(){
         return $this->belongsTo(Reservation::class);
     }
 }

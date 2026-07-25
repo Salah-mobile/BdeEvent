@@ -13,7 +13,7 @@ Route::controller(LoginController::class)->group(function(){
 });
 Route::controller(EventController::class)->group(function (){
     Route::get("/DisplayEvents","DisplayEvent")->name("displayEvent");
-    Route::get("/myEvents/{id}","DisplayEventByUser")->name("myEvent");
+    Route::get("/myTickets/{id}","DisplayTicketByUser")->name("myTicket");
     Route::delete("/deleteEvent/{id}","deleteEvent")->name('deleteE');
     Route::get("/createEvent","CreateEventPage")->name("displayForm");
     Route::post("/createEvent","CreateEvent")->name("createEvent");
