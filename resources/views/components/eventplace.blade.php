@@ -55,7 +55,7 @@
             <form action="{{ route('reserve') }}" method="POST">
                 @csrf
                 <input type="hidden" name="event_id" value="{{ $event_id }}">
-                @if ($isReserved || $places_limite > 0)git
+                @if ($isReserved || $places_limite > 0)
                 <button type="submit"
                         class="w-full py-2.5 px-4 rounded-xl font-semibold text-sm transition-all duration-200 shadow-sm flex items-center justify-center gap-2 {{ $isReserved ? 'bg-red-50 text-red-600 hover:bg-red-100 border border-red-200' : 'bg-indigo-600 text-white hover:bg-indigo-700 hover:shadow-md' }}">
                     @if($isReserved)
