@@ -32,6 +32,7 @@ Route::middleware('auth')->group(function () {
             Route::get('/UpDateEvent/{id}', 'UpdateEventDisplay')->name('updateES');
             Route::put('/UpDateEvent/{id}', 'UpdateEvent')->name('updateE');
             Route::delete('/deleteEvent/{id}', 'deleteEvent')->name('deleteE');
+            Route::get("/displayEventWithoutReseravtion","EventWithoutReservation")->name("DisplayWithoutEvent");
         });
     });
 });

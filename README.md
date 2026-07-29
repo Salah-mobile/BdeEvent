@@ -148,7 +148,7 @@ L'accès est contrôlé grâce aux middlewares :
 
 ---
 
-# 👨 Auteur
+#  Auteur
 
 **Salah Eddine Tabit**
 

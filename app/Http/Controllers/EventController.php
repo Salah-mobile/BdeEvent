@@ -75,4 +75,8 @@ class EventController extends Controller
        $event=Event::where("id",$id)->first();
        return view("admin.EventForm",["event"=>$event]);
     }
+    public function EventWithoutReservation(){
+        $events=Event::doesntHave("reservations")->get();
+        dd($events);
+    }
 }
